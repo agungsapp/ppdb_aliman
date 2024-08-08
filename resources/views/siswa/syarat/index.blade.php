@@ -1,9 +1,15 @@
 @extends('siswa.layouts.main')
 @section('content')
-		<br>
-		<br>
-		<br>
-		<br>
+		<div class="site-section">
+				<div class="container-fluid">
+						<div class="row">
+								<div class="col-12">
+										<img style="object-fit: cover; width: 100%; max-height: 300px;"
+												src="{{ Storage::url('upload/syarat/' . $syarat->thumbnail) }}" alt="{{ $syarat->thumbnail }}">
+								</div>
+						</div>
+				</div>
+		</div>
 		<div class="site-section">
 				<div class="container">
 						<div class="row justify-content-center mb-5 text-center">

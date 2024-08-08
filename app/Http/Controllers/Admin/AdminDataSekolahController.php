@@ -60,7 +60,7 @@ class AdminDataSekolahController extends Controller
 
         // Validasi input
         $request->validate([
-            'nama_sekolah' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
             'provinsi' => 'required|string|max:255',
             'kabupaten' => 'required|string|max:255',
@@ -69,7 +69,7 @@ class AdminDataSekolahController extends Controller
         ]);
 
 
-        return response()->json($request->all());
+        // return response()->json($request->all());
 
 
         try {

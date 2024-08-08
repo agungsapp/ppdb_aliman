@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\PembayaranModel;
 use App\Models\Sekolah;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
 
@@ -54,7 +55,8 @@ class AdminDataBayarController extends Controller
 
             return view('admin.bayar.show', [
                 'pembayaran' => $pembayaran,
-                'sekolah' => $sekolah
+                'sekolah' => $sekolah,
+                'siswa' => Siswa::where('id_user', $pembayaran->id_user)->first(),
             ]);
         } catch (\Throwable $th) {
             throw $th;

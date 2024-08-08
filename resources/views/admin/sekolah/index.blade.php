@@ -10,9 +10,28 @@
 														Data Profil Sekolah
 												</div>
 										</div>
-										<form action="{{ route('admin.syarat.store', $sekolah->id) }}" method="post">
+
+										<div class="row">
+												<div class="col-12">
+														<!-- Tampilkan semua pesan kesalahan -->
+														@if ($errors->any())
+																<div class="alert alert-danger" role="alert">
+																		Terjadi Kesalahan
+																		<div>
+																				<ul style="color: red;">
+																						@foreach ($errors->all() as $error)
+																								<li>{{ $error }}</li>
+																						@endforeach
+																				</ul>
+																		</div>
+																</div>
+														@endif
+												</div>
+										</div>
+
+										<form action="{{ route('admin.sekolah.update', $sekolah->id) }}" method="post">
 												@csrf
-												@method('POST')
+												@method('PUT')
 
 												<div class="card-body">
 

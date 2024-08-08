@@ -13,7 +13,7 @@
 						</div>
 				</div>
 				<div class="intro-section"
-						style="background-image: url('{{ asset('web') }}/hero/hero1.png; background-size: cover; background-position : center;');">
+						style="background-image: url('{{ asset('web') }}/hero/hero2.png'); background-size: cover; background-position : center;">
 						<div class="container">
 								<div class="row align-items-center">
 										<div class="col-lg-12 mx-auto text-center" data-aos="fade-up">
@@ -22,6 +22,7 @@
 								</div>
 						</div>
 				</div>
+
 
 				{{-- <div class="intro-section"
 						style="background-image: url('https://source.unsplash.com/random/1890x1080X?query=landscape');">
@@ -76,7 +77,7 @@
 														<div class="course-1-item" style="min-height: 600px;">
 																<figure class="thumnail">
 																		<a href="course-single.html"><img src="{{ Storage::url('upload/pengumuman/' . $p->thumbnail) }}"
-																						alt="Image" class="img-fluid"></a>
+																						alt="Image" class="img-fluid" style="width: 100%; height: 300px; object-fit: cover;"></a>
 																		<div class="price mb-1">{{ $p->created_at->isoFormat('D MMMM YYYY, HH.mm') }}</div>
 																		<div class="category">
 																				<h3>PENGUMUMAN</h3>

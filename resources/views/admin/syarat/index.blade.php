@@ -10,9 +10,10 @@
 														Data Syarat Pendaftaran
 												</div>
 										</div>
-										<form action="" method="post">
+										<form action="{{ route('admin.syarat.update', $syarat->id) }}" method="post" enctype="multipart/form-data">
+												@csrf
+												@method('PUT')
 												<div class="card-body">
-
 														<div class="row">
 																<div class="col-12">
 																		<x-input-text nama="judul" value="{{ $syarat->judul }}">
@@ -25,7 +26,7 @@
 																</div>
 																<div class="col-6">
 																		<label for="formFile" class="form-label">Gambar</label>
-																		<input class="form-control" type="file" id="formFile">
+																		<input name="thumbnail" class="form-control" type="file" id="formFile">
 																</div>
 
 														</div>
