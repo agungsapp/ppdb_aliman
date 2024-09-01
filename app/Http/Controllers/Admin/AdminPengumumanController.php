@@ -160,14 +160,18 @@ class AdminPengumumanController extends Controller
     public function destroy(string $id)
     {
         $pengumuman = PengumumanModel::find($id);
-        if ($pengumuman->thumbnail != 'default.png') {
-            if ($pengumuman->thumbnail && Storage::exists('public/upload/pengumuman/' . $pengumuman->thumbnail)) {
-                Storage::delete('public/upload/pengumuman/' . $pengumuman->thumbnail);
+        try {
+            if ($pengumuman->thumbnail != 'default.png') {
+                if ($pengumuman->thumbnail && Storage::exists('public/upload/pengumuman/' . $pengumuman->thumbnail)) {
+                    Storage::delete('public/upload/pengumuman/' . $pengumuman->thumbnail);
+                }
             }
+            $pengumuman->delete();
+            Alert::success('Berhasil', 'Pengumuman berhasil hapus !');
+            return redirect()->route('admin.pengumuman.index');
+        } catch (\Throwable $th) {
+            //throw $th;
+            Alert::error('Gagal', 'Terjadi kesalahan pada server !');
         }
-        $pengumuman->delete();
-
-        Alert::success('Berhasil', 'Pengumuman berhasil hapus !');
-        return redirect()->route('admin.pengumuman.index');
     }
 }
