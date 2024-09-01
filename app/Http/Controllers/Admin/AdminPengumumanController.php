@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\PengumumanModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -130,19 +131,29 @@ class AdminPengumumanController extends Controller
 
             // Simpan gambar jika ada
             if ($request->hasFile('thumbnail')) {
+                Log::info('Thumbnail file found: ' . $request->file('thumbnail')->getClientOriginalName());
+
                 // Hapus thumbnail lama jika ada
                 if ($pengumuman->thumbnail != 'default.png') {
+                    Log::info('Old thumbnail exists: ' . $pengumuman->thumbnail);
                     if ($pengumuman->thumbnail && Storage::exists('public/upload/pengumuman/' . $pengumuman->thumbnail)) {
+                        Log::info('Deleting old thumbnail: ' . $pengumuman->thumbnail);
                         Storage::delete('public/upload/pengumuman/' . $pengumuman->thumbnail);
+                    } else {
+                        Log::info('Old thumbnail does not exist in storage.');
                     }
                 }
 
                 $thumbnailFile = $request->file('thumbnail');
                 $namaFile = time() . '_' . $thumbnailFile->getClientOriginalName();
+                Log::info('New thumbnail filename: ' . $namaFile);
+
                 $path = $thumbnailFile->storeAs('public/upload/pengumuman', $namaFile);
+                Log::info('File stored at: ' . $path);
 
                 $pengumuman->thumbnail = $namaFile;
             }
+
 
             $pengumuman->save();
 
